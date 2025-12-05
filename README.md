@@ -1,71 +1,28 @@
 ![Logo](/docs/logo.png)
 
-CI/CD Status: [![pipeline status](https://repo.kamit.fi/ttv23sp/peliteknologian-projekti-3/projektit/tiimi1/badges/main/pipeline.svg)](https://repo.kamit.fi/ttv23sp/peliteknologian-projekti-3/projektit/tiimi1/-/commits/main)
-
-Latest Build: http://86.50.20.238:8080
-
 License: Tile is availaible under 2 licenses, The Happy Bunny License and the Beerware License. For more information, see [LICENSE](/docs/LICENSE.txt).
 
-## About
+## About Tile
 
-Tile (lyh. **T**ile **i**s a **L**evel **E**ditor) on WebGL 2.0 ja Emscriptenin avulla toimiva monipuolinen tilemap editori.
-Tilen viimeisin versio pyörii aina CSCn kautta hostatulla [remote serverillä](http://86.50.20.238:8080).
-Viimeisimpä keskeneräisiä / kokeellisia buildeja voi pöyrittää omalla tietokoneella
-Dockerin avulla (ohjeet alla).
+Tile (**T**ile **i**s a **L**evel **E**ditor) is a WebGL 2.0 and Emscripten based tilemap editor, that is specifically made for OpenGL / SFML Based C++ Projects, with additional JSON support for other purposes.
 
-Tilessä on kolme eri export vaihtoehtoa
-1. Tekstitiedosto (.txt), jossa on valmis tilemap, tekstuurien nimet ja clear colorit, jotka voi Copy & Pastella laittaa projektiin
-2. C++ Header (.h), jossa on samat asiat kun .txt tiedostossa, erona, että mappia ei tarvitse Copy & Pastettaa, vaan sen saa käyttöön #include -makrolla.
-3. JSON, joka on tehty muistuttamaan Tiledillä tehtyjä .json tiedostoja, jotta parsimislogiikka toimii samalla tavalla.
+The main difference between Tile and various other map editors, is that Tile is ran in a browser, so no external executables are needed. This also makes it multiplatform, as the only requirement you need for your PC to run Tile, is to have a web browser.
 
-Tämän lisäksi, keskeneräiset projektit voi tallentaa .tile muotoon. Tätä tiedostoa ei ole tehty ihmisen luettavaksi, vaan sen ideana on olla
-vain ja ainoastaan läjä dataa, jonka Tile voi parsia. .tile tiedostoon tallentuu seuraavat asiat:
-- [x] Tilelayerit (Nimet, TileIDt, Määrä)
-- [x] Mapin koko
-- [x] Clear Color
-- [x] Grid Color
-- [x] Tekstuurien nimet ja Määrä
-- [x] Tekstuurit Base64 Encodattuna
+Tile can be used to create maps of various styles and sizes. You can create a 1000x1000 tile map with only one layer, or a 10x10 map with 100 layers. The only limiting thing is your imagination!
 
+Tile's own tilemap format (.tile) provides an easy way to quickly jump back into your project, no matter where you are, as every every texture you have imported is automatically Base64 encoded and saved into the file, which is then converted back into a usable texture after you load back your previous project.
 
-## How To?
+## Tilemap Formats
 
-**Via Terminal (Dev Sandboxes)**
+Tile currently can export your project into 3 different formats:
 
-<ol>
-    <li> docker build -t map-editor . </li>
-    <li> docker run -p 8080:8080 map-editor </li>
-    <li> Open: http://127.0.0.1:8080/ </li>
-</ol>
+1. Text File (.txt), where the content can just be Copy & Pasted to your C++ Project
+2. C++ Header File (.h), where you can start using the map by including the header in your main.cpp
+3. JSON, which is compatible with projects created with other tilemap editors.
 
-**Via Terminal (Editor Only)**
+## Compiling Tile
 
-<ol>
-    <li> docker compose build </li>
-    <li> docker compose up </li>
-    <li> Open: http://127.0.0.1:10001/ </li>
-</ol>
+To compile Tile on your own, you just need Docker. The repository has all the files you need for a simple and quick compiling via your preferred terminal.
 
-**Via Docker Desktop**
-
-<ol>
-    <li> Powershell: docker build -t map-editor . </li>
-    <li> Docker Desktop -> Images -> map-editor -> Run </li>
-    <li> Optional Settings -> Ports -> Set Host port to '8080' </li>
-    <li> Run the Container </li>
-    <li> Open: http://127.0.0.1:8080/ </li>
-</ol>
-
-## Tekijät
-
-Julius Muurinen - [Linkki tuntikirjanpitoon](https://edukainuu-my.sharepoint.com/:x:/r/personal/juliusmuurinen_kamk_fi/Documents/Julius%20Muurinen%20-%20Projekti%203.xlsx?d=w66a3d9aa96c2439293933ebf6ee7edd6&csf=1&web=1&e=Xuy6gq)
-
-Eetu Kuru - Linkki tuntikirjanpitoon
-
-
-# Hyödyllisiä linkkejä
-
-[CSC Projekti](https://my.csc.fi/projects/invitation/ba53167a-382e-4cf4-a0f3-61116f241845)
-
-[Interaktiivinen Imgui manuaali, koodin kera](https://pthom.github.io/imgui_manual_online/manual/imgui_manual.html)
-
+1. ``docker compose up``
+2. ``docker compose build``
