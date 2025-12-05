@@ -1,0 +1,6 @@
+build
+out
+.out
+.vs
+CMakeLists.txt.user
+.vscode/settings.json

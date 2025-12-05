@@ -1,0 +1,9 @@
+services:
+  tile-build-and-run:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "10001:10001"
+    working_dir: /project/build/editor
+    command: ["http-server", ".", "-p", "10001", "-a", "0.0.0.0"]

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAATtJREFUeJztm7ERwjAMRW2OkViBHRgApqBnCaBnB1ZgBY5RREMHHLbk+IXzf7Vif16ClUJJSQgxMtl7oZlZ2yh+cs7u37EMbhy5vAnR+xASkFJK6XoLL+FmvQovsWgS5I+RADoAzfACQm2wqgscL+W1u01NjlAbHP4JCLXB0h7suUG93rPcAnLO25I6MztNvUcEtwAzOxeWugWU7hF5Ix3+DJAAOgCNBNABaCSADkAjAXQAGgmgA9BIAB2ARgLoADQSQAegkQA6AI0E0AFoJIAOQCMBdAAaCaAD0EgAHYBGAugANPFByVIe925b1TD8EyABdACa4QX0OwS/cdij2/MCOs4EfmIWAtKXmcAeYmYjoGLusCnDH4KRafHi0l+TnK+13Fkik6Jd/gIz+sDsjciwdGnp5APPQgjh5QmiGTvZWj1zkQAAAABJRU5ErkJggg==">
+
+    <style>
+        /* Make sure canvas fills the browser window */
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden; /* no scrollbars */
+            width: 100%;
+            height: 100%;
+        }
+        canvas {
+            display: block; /* remove default inline spacing */
+        }
+    </style>
+</head>
+
+<body>
+
+    <canvas id="canvas" oncontextmenu="event.preventDefault()"></canvas>
+
+    <script type='text/javascript'>
+        function resizeCanvas() {
+            var canvas = document.getElementById('canvas');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+
+            if (typeof Module !== 'undefined' && Module.canvas) {
+                if (typeof Module._emscripten_set_canvas_element_size === 'function') {
+                    Module._emscripten_set_canvas_element_size('canvas', width, height);
+                }
+            }
+        }
+
+        function openDialog() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.tile';
+
+            input.onchange = async (e) => {
+                const file = e.target.files[0];
+                if (!file) return;
+
+                const text = await file.text();
+
+                // Call C++ parser
+                Module.ccall("parseTileFile", null, ["string"], [text]);
+
+                // Notify C++ that parsing is finished
+                Module.ccall("onImportFinished", null, [], []);
+            };
+
+            input.click();
+        }
+
+        // Initial size
+        resizeCanvas();
+
+        // Update size on window resize
+        window.addEventListener('resize', resizeCanvas);
+
+        var Module = {
+            canvas: document.getElementById('canvas')
+        };
+    </script>
+
+    {{{ SCRIPT }}}
+
+</body>
+
+</html>
+
