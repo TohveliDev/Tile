@@ -680,10 +680,16 @@ public:
         {
             ImGui::AlignTextToFramePadding();
             ImGui::Text("Tile - Tile Is a Level Editor");
+            ImGui::Text("Version 1.0.0 ─ 14/01/2026");
             ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 25);
 
             if (ImGui::Button("X", ImVec2(25, 0))) { ImGui::CloseCurrentPopup(); }
             
+            ImGui::Separator();
+            ImGui::Text("emscripten-glfw ver. 3.4.0");
+            ImGui::Text("OpenGL Mathematics ver. 0.9.9.9");
+            ImGui::Text("Dear ImGui ver. 1.92.2b");
+            ImGui::Text("stb_image ver. 2.25");
             ImGui::Separator();
             ImGui::Text("Developed by:");
             ImGui::Text("Eetu Kuru TTV23SP");
@@ -693,6 +699,7 @@ public:
             ImGui::Text("Daniel Rinne");
             ImGui::Text("Mikko Romppainen");
             ImGui::Text("Niko Kinnunen");
+            ImGui::Text("Kajaani University of Applied Sciences");
             ImGui::Separator();
             ImGui::Text("Copyright © 2026 Eetu Kuru & Julius Muurinen");
             ImGui::EndPopup();
