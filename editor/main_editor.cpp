@@ -683,10 +683,7 @@ public:
             ImGui::SameLine(ImGui::GetWindowContentRegionMax().x - 25);
 
             if (ImGui::Button("X", ImVec2(25, 0))) { ImGui::CloseCurrentPopup(); }
-
-            ImGui::Separator();
-
-            ImGui::Text("Peliteknologian Projekti 3 - Tiimi 1");
+            
             ImGui::Separator();
             ImGui::Text("Developed by:");
             ImGui::Text("Eetu Kuru TTV23SP");
@@ -697,13 +694,7 @@ public:
             ImGui::Text("Mikko Romppainen");
             ImGui::Text("Niko Kinnunen");
             ImGui::Separator();
-            ImGui::Text("\"THE BEERWARE LICENSE\" (Revision 42):");
-            ImGui::Text("<tiimi1@kamk> wrote this code. As long you retain this");
-            ImGui::Text("notice, you can do whatever you want with this stuff.");
-            ImGui::Text("If we meet someday, and you think this stuff is worth it,");
-            ImGui::Text("you can buy us beer(s) in return.");
-            ImGui::Separator();
-            ImGui::Text("Copyright © 2025 Eetu Kuru & Julius Muurinen");
+            ImGui::Text("Copyright © 2026 Eetu Kuru & Julius Muurinen");
             ImGui::EndPopup();
         }
         // END About
